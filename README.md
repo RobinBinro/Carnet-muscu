@@ -1,7 +1,8 @@
 # Carnet de muscu
 
 Application web de suivi des séances de musculation : modèles de séance par jour, saisie des séries
-(poids, répétitions), historique, courbes de progression, export CSV.
+(poids, répétitions), historique, courbes de progression, export CSV, et une fiche par exercice
+(matériel, muscles ciblés, exécution, conseils).
 
 - **Hébergement** : GitHub Pages (fichiers statiques, aucun serveur à gérer).
 - **Données** : Firebase (Firestore), avec une copie sur le téléphone pour fonctionner hors ligne.

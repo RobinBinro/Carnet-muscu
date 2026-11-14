@@ -28,6 +28,7 @@
   --slab:#11151B; --slab-ink:#F4F6F8; --slab-muted:#A7B0BC; --slab-line:#2C333D;
   --plate:#F5C518; --plate-ink:#11151B;
   --series:#2350D8; --danger:#B3261E;
+  --body:#D5DAE1; --muscle:#B9C1CC; --hot:#D9381E;
   --font-display:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
   --font-body:"Barlow","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
   --r:10px;
@@ -40,6 +41,7 @@
     --slab:#232A35; --slab-ink:#EEF1F4; --slab-muted:#A7B0BC; --slab-line:#394150;
     --plate:#F5C518; --plate-ink:#11151B;
     --series:#6E8CF5; --danger:#FF8A80;
+    --body:#2A313B; --muscle:#414B59; --hot:#FF6A4D;
     color-scheme:dark;
   }
 }
@@ -49,6 +51,7 @@
   --slab:#232A35; --slab-ink:#EEF1F4; --slab-muted:#A7B0BC; --slab-line:#394150;
   --plate:#F5C518; --plate-ink:#11151B;
   --series:#6E8CF5; --danger:#FF8A80;
+    --body:#2A313B; --muscle:#414B59; --hot:#FF6A4D;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -66,7 +69,7 @@ p{margin:0}
 .brand{font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .brand i{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--plate);border:5px solid var(--ink)}
 .tabs{display:flex;gap:4px}
-.tabs a{flex:1;min-width:0;text-align:center;padding:10px 2px 9px;text-decoration:none;color:var(--muted);font-family:var(--font-display);font-weight:700;font-size:clamp(14px,4vw,18px);letter-spacing:.03em;text-transform:uppercase;border-bottom:4px solid transparent}
+.tabs a{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-align:center;padding:10px 2px 9px;text-decoration:none;color:var(--muted);font-family:var(--font-display);font-weight:700;font-size:clamp(13px,3.7vw,18px);letter-spacing:.02em;text-transform:uppercase;border-bottom:4px solid transparent}
 .tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--plate)}
 
 main{max-width:760px;margin:0 auto;padding:16px 16px 72px;display:flex;flex-direction:column;gap:16px}
@@ -223,6 +226,37 @@ td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;padding-right:0;pad
 .plist button small{color:var(--muted);font-weight:400}
 details.newex summary{cursor:pointer;font-weight:600;padding:6px 0}
 details.newex .row{margin-top:8px}
+.linkname{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;text-align:left;text-transform:inherit;letter-spacing:inherit;cursor:pointer;text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:2px;text-underline-offset:4px;overflow-wrap:anywhere}
+.linkname:hover{text-decoration-color:currentColor}
+.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.lib{overflow:hidden}
+.lib h3{font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:12px 14px 8px}
+.lib button{display:flex;flex-direction:column;gap:1px;width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:transparent;padding:10px 14px;min-height:48px}
+.lib button:hover{background:var(--surface-2)}
+.lib button b{font-weight:600}
+.lib button small{color:var(--muted);font-size:13px}
+.plist .prow{display:flex;align-items:stretch;border-bottom:1px solid var(--line)}
+.plist .prow button{border-bottom:0}
+.plist .prow > button:first-child{flex:1;min-width:0}
+.plist .prow .info{flex-shrink:0;color:var(--muted);font-size:13px;font-weight:600;text-decoration:underline;padding:11px 8px}
+#fiche{position:fixed;inset:0;z-index:25;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+#fiche[hidden]{display:none}
+.fiche-in{max-width:760px;margin:0 auto;padding:0 16px 48px;display:flex;flex-direction:column;gap:16px;outline:none}
+.fiche-head{position:sticky;top:0;background:var(--bg);padding:8px 0 4px;z-index:1;border-bottom:1px solid var(--line)}
+.fiche-in .slab h1{font-size:clamp(30px,8.5vw,44px)}
+.fiche-in h2.eyebrow{font-size:15px}
+.mmap svg{display:block;width:100%;max-width:340px;height:auto;margin:0 auto}
+.mmap .b{fill:var(--body)}
+.mmap .bl{stroke:var(--body);fill:none;stroke-linecap:round}
+.mmap .m{fill:var(--muscle);stroke:var(--surface);stroke-width:1}
+.mmap .m.p{fill:var(--hot)}
+.mmap .m.s{fill:var(--hot);fill-opacity:.4}
+.mmap .dv{stroke:var(--surface);stroke-width:1;fill:none}
+.mmap text{font-family:var(--font-body);font-size:11px;font-weight:600;fill:var(--muted);text-anchor:middle;letter-spacing:.08em}
+.mleg{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.mleg li{display:flex;gap:8px;align-items:baseline}
+.mleg i{width:12px;height:12px;border-radius:3px;background:var(--hot);flex-shrink:0;display:inline-block}
+.mleg i.s{opacity:.4}
 #toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:8px;font-size:14px;z-index:30;max-width:90%;display:none}
 #toast.on{display:block}
 body.gate .tabs{display:none}
@@ -256,6 +290,7 @@ body.gate .tabs{display:none}
     <nav class="tabs" aria-label="Sections">
       <a href="#seances" data-tab="seances">Séances</a>
       <a href="#programme" data-tab="programme">Programme</a>
+      <a href="#exercices" data-tab="exercices">Exercices</a>
       <a href="#progression" data-tab="progression">Progression</a>
     </nav>
   </div>
@@ -263,6 +298,7 @@ body.gate .tabs{display:none}
 <div class="banner" id="banner"></div>
 <main id="app"></main>
 <div id="sheet" hidden></div>
+<div id="fiche" hidden></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <input type="file" id="restore-file" accept="application/json,.json" hidden>
 
@@ -294,6 +330,524 @@ const CATALOG = [], BY_ID = {};
 for (const g of Object.keys(GROUPS)) for (const n of GROUPS[g]) { const e = {id: slug(g)+'.'+slug(n), name:n, group:g}; CATALOG.push(e); BY_ID[e.id] = e; }
 const GROUP_NAMES = Object.keys(GROUPS);
 
+/* Fiches : [matériel, muscles principaux, muscles secondaires, étapes (séparées par |), conseils (séparés par |)] */
+const FICHES = {
+/* ----- Pectoraux ----- */
+"Développé couché barre": ["Banc plat, barre, supports", "pec", "tri delt_a",
+ "Allonge-toi, les yeux sous la barre, omoplates serrées et pieds à plat au sol.|Décroche la barre, prise un peu plus large que les épaules, et descends-la en contrôle jusqu’au bas des pectoraux.|Pousse jusqu’à tendre les bras, sans décoller les fesses ni les épaules du banc.",
+ "Garde les coudes à environ 45° du buste plutôt qu’écartés à 90° : les épaules sont mieux protégées.|Sur charge lourde, règle des sécurités ou demande une parade."],
+"Développé couché haltères": ["Banc plat, deux haltères", "pec", "tri delt_a",
+ "Assis, haltères posés sur les cuisses, bascule en arrière en les amenant au niveau de la poitrine.|Pousse les haltères vers le haut en les rapprochant légèrement, sans les entrechoquer.|Redescends lentement jusqu’à sentir l’étirement des pectoraux, coudes sous les poignets.",
+ "L’amplitude est plus grande qu’à la barre : descends tant que les épaules restent stables.|En fin de série, ramène les haltères sur les cuisses pour te relever, plutôt que de les lâcher sur les côtés."],
+"Développé incliné barre": ["Banc incliné (30 à 45°), barre, supports", "pec", "delt_a tri",
+ "Installe-toi sur le banc incliné, omoplates serrées, prise un peu plus large que les épaules.|Descends la barre en contrôle vers le haut de la poitrine, sous les clavicules.|Pousse à la verticale jusqu’à l’extension des bras.",
+ "Cible le haut des pectoraux. Au-delà de 45° d’inclinaison, ce sont surtout les épaules qui travaillent.|Garde les poignets droits, à l’aplomb des coudes."],
+"Développé incliné haltères": ["Banc incliné (30 à 45°), deux haltères", "pec", "delt_a tri",
+ "Assis sur le banc incliné, amène les haltères au niveau des épaules, paumes vers l’avant.|Pousse vers le haut en rapprochant légèrement les haltères.|Redescends lentement jusqu’à l’étirement du haut des pectoraux.",
+ "Ne cambre pas pour tricher : cela revient à aplatir l’inclinaison du banc.|Garde les coudes légèrement rentrés, pas dans l’alignement des épaules."],
+"Développé décliné barre": ["Banc décliné avec cale-pieds, barre, supports", "pec", "tri delt_a",
+ "Cale tes pieds, allonge-toi et saisis la barre un peu plus large que les épaules.|Descends la barre vers le bas des pectoraux.|Pousse jusqu’à tendre les bras.",
+ "Cible la partie basse des pectoraux, avec une amplitude plus courte qu’à plat.|Demande une parade pour décrocher et reposer la barre : la position rend la manœuvre délicate."],
+"Développé couché à la Smith": ["Banc plat, barre guidée (Smith machine)", "pec", "tri delt_a",
+ "Place le banc pour que la barre arrive au milieu de la poitrine en bas du mouvement.|Déverrouille la barre d’une rotation des poignets et descends en contrôle.|Pousse jusqu’à l’extension, puis reverrouille en fin de série.",
+ "La trajectoire est imposée : prends le temps de bien positionner le banc avant de charger.|Règle les butées de sécurité juste sous le niveau de ta poitrine."],
+"Développé incliné à la Smith": ["Banc incliné (30 à 45°), barre guidée (Smith machine)", "pec", "delt_a tri",
+ "Place le banc incliné pour que la barre descende sous les clavicules.|Déverrouille, descends la barre en contrôle.|Pousse jusqu’à l’extension des bras, puis reverrouille en fin de série.",
+ "Vérifie la position du banc à vide avant de charger.|Garde les omoplates serrées contre le dossier pendant toute la série."],
+"Développé à la machine convergente": ["Machine à développé convergente", "pec", "tri delt_a",
+ "Règle le siège pour que les poignées soient à mi-hauteur de la poitrine.|Dos et omoplates plaqués au dossier, pousse les poignées vers l’avant sans verrouiller brutalement les coudes.|Reviens lentement jusqu’à l’étirement des pectoraux, sans laisser reposer la charge.",
+ "Les bras se rapprochent en fin de poussée : profites-en pour contracter les pectoraux une seconde.|Si les épaules décollent du dossier, la charge est trop lourde."],
+"Écarté couché haltères": ["Banc plat, deux haltères légers à modérés", "pec", "delt_a",
+ "Allongé, bras tendus au-dessus de la poitrine, paumes face à face, coudes légèrement fléchis.|Ouvre les bras en arc de cercle jusqu’à sentir l’étirement des pectoraux.|Referme en gardant le même angle aux coudes, comme pour entourer un tronc d’arbre.",
+ "L’angle des coudes ne change pas : si tu plies puis tends, ça devient un développé.|Ne descends pas plus bas que la ligne des épaules."],
+"Écarté incliné haltères": ["Banc incliné (30°), deux haltères légers à modérés", "pec", "delt_a",
+ "Sur le banc incliné, bras tendus au-dessus du haut de la poitrine, coudes légèrement fléchis.|Ouvre les bras en arc de cercle jusqu’à l’étirement.|Referme en contractant le haut des pectoraux.",
+ "Privilégie une charge légère et un mouvement lent : c’est un exercice d’étirement et de contraction.|Garde les épaules basses, loin des oreilles."],
+"Écarté à la poulie vis-à-vis": ["Deux poulies hautes en vis-à-vis, poignées", "pec", "delt_a",
+ "Saisis les deux poignées, avance d’un pas, buste légèrement penché, un pied devant.|Coudes légèrement fléchis, ramène les mains devant le bas de la poitrine en arc de cercle.|Reviens lentement, bras ouverts, jusqu’à l’étirement.",
+ "Marque une seconde de contraction quand les mains se rejoignent.|Garde le buste immobile : s’il bascule à chaque répétition, allège."],
+"Écarté poulie basse": ["Deux poulies basses en vis-à-vis, poignées", "pec", "delt_a",
+ "Saisis les poignées, avance d’un pas, paumes vers l’avant, bras le long du corps légèrement écartés.|Monte les mains en arc de cercle jusqu’à hauteur du menton, coudes légèrement fléchis.|Redescends en contrôlant.",
+ "Le mouvement de bas en haut cible le haut des pectoraux.|Ne hausse pas les épaules en montant."],
+"Pec deck (butterfly)": ["Machine pec deck (butterfly)", "pec", "delt_a",
+ "Règle le siège pour que les poignées soient à hauteur de poitrine, dos plaqué au dossier.|Rapproche les bras devant toi en gardant les coudes légèrement fléchis.|Reviens lentement jusqu’à l’étirement, sans laisser reposer la charge.",
+ "Règle le point de départ pour ne pas partir trop loin en arrière : l’étirement doit rester confortable pour l’épaule.|Contracte une seconde bras rapprochés."],
+"Pompes": ["Poids du corps", "pec", "tri delt_a abs",
+ "Mains au sol un peu plus larges que les épaules, corps aligné de la tête aux talons.|Descends la poitrine vers le sol en gardant les coudes à environ 45° du buste.|Pousse jusqu’à tendre les bras, sans creuser le bas du dos.",
+ "Gaine les abdominaux et les fessiers pour garder le corps en planche.|Trop dur : mains surélevées sur un banc. Trop facile : pieds surélevés ou lest sur le dos."],
+"Dips buste penché": ["Barres parallèles (lest possible)", "pec", "tri delt_a",
+ "En appui bras tendus sur les barres, penche le buste vers l’avant et croise les pieds derrière toi.|Descends en écartant légèrement les coudes, jusqu’à ce que les bras soient à peu près parallèles au sol.|Remonte en poussant, sans redresser complètement le buste.",
+ "Plus le buste est penché, plus les pectoraux travaillent.|Ne descends pas au-delà d’une amplitude confortable pour tes épaules."],
+"Pull-over haltère": ["Banc plat, un haltère", "pec lat", "tri",
+ "Allongé sur le banc, tiens l’haltère à deux mains au-dessus de la poitrine, bras presque tendus.|Descends l’haltère derrière la tête en arc de cercle, en gardant l’angle des coudes.|Ramène-le au-dessus de la poitrine par le même chemin.",
+ "Garde les hanches basses et les côtes rentrées pour ne pas cambrer.|Tiens l’haltère par le disque du haut, bien calé dans les paumes."],
+
+/* ----- Dos ----- */
+"Tractions pronation": ["Barre de traction (lest ou élastique possible)", "lat", "bi mid fa",
+ "Suspends-toi bras tendus, mains en pronation (paumes vers l’avant), un peu plus larges que les épaules.|Tire en abaissant d’abord les épaules, puis amène la poitrine vers la barre, coudes vers les hanches.|Redescends en contrôle jusqu’à l’extension complète des bras.",
+ "Évite de te balancer ou de donner un coup de jambes.|Trop dur : utilise un élastique ou la machine assistée. Trop facile : ajoute un lest."],
+"Tractions supination": ["Barre de traction (lest ou élastique possible)", "lat bi", "mid fa",
+ "Suspends-toi bras tendus, mains en supination (paumes vers toi), à la largeur des épaules.|Tire jusqu’à passer le menton au-dessus de la barre, coudes le long du corps.|Redescends en contrôle jusqu’à l’extension des bras.",
+ "Cette prise sollicite davantage les biceps que la pronation.|Ne verrouille pas brutalement les coudes en bas."],
+"Tractions prise neutre": ["Barre de traction à poignées parallèles", "lat", "bi fa mid",
+ "Suspends-toi bras tendus, paumes face à face.|Tire en amenant la poitrine vers les poignées, coudes le long du corps.|Redescends en contrôle jusqu’à l’extension des bras.",
+ "C’est souvent la prise la plus confortable pour les épaules et les poignets.|Garde les épaules basses pendant toute la montée."],
+"Tirage vertical poitrine": ["Poulie haute, barre large, siège avec cale-cuisses", "lat", "bi mid delt_p",
+ "Assis, cuisses calées, saisis la barre en pronation, un peu plus large que les épaules.|Buste très légèrement incliné en arrière, tire la barre vers le haut de la poitrine, coudes vers le bas.|Laisse remonter la barre en contrôle jusqu’à l’extension des bras.",
+ "Tire avec les coudes, pas avec les mains.|Si tu dois te pencher fortement en arrière pour finir, la charge est trop lourde."],
+"Tirage vertical prise serrée": ["Poulie haute, poignée triangle ou barre serrée", "lat", "bi mid",
+ "Assis, cuisses calées, saisis la poignée serrée bras tendus.|Tire la poignée vers le haut de la poitrine en gardant les coudes près du corps.|Remonte en contrôle jusqu’à l’étirement complet des dorsaux.",
+ "La prise serrée allonge l’amplitude : profite de l’étirement en haut.|Garde la poitrine ouverte, sans arrondir le dos."],
+"Tirage vertical prise neutre": ["Poulie haute, barre à poignées parallèles", "lat", "bi mid",
+ "Assis, cuisses calées, saisis les poignées paumes face à face.|Tire vers le haut de la poitrine, coudes vers les hanches.|Remonte en contrôle jusqu’à l’extension des bras.",
+ "Prise généralement plus confortable pour les épaules que la pronation large.|Abaisse les épaules avant de plier les bras."],
+"Tirage horizontal poulie basse": ["Poulie basse avec banc et cale-pieds, poignée triangle", "mid lat", "bi delt_p low",
+ "Assis, pieds calés, genoux légèrement fléchis, dos droit, saisis la poignée bras tendus.|Tire la poignée vers le nombril en serrant les omoplates, coudes le long du corps.|Reviens en tendant les bras, sans arrondir le bas du dos.",
+ "Le buste reste presque immobile : ce sont les bras et les omoplates qui bougent.|Marque une seconde de contraction, omoplates serrées."],
+"Rowing barre": ["Barre", "lat mid", "bi delt_p low",
+ "Debout, genoux fléchis, buste penché à environ 45°, dos plat, barre tenue bras tendus.|Tire la barre vers le bas du ventre en gardant les coudes près du corps.|Redescends en contrôle, sans relever le buste.",
+ "Le dos reste plat du début à la fin. S’il s’arrondit, allège.|Ne te redresse pas à chaque répétition pour t’aider."],
+"Rowing barre en T": ["Barre en T (landmine) ou machine T-bar, poignée", "mid lat", "bi delt_p low",
+ "À cheval sur la barre, genoux fléchis, buste penché, dos plat, saisis la poignée.|Tire la charge vers la poitrine en serrant les omoplates.|Redescends en contrôle jusqu’à l’extension des bras.",
+ "Garde la poitrine sortie et le regard légèrement vers l’avant.|Des disques de petit diamètre permettent une amplitude plus grande."],
+"Rowing haltère un bras": ["Un haltère, banc", "lat", "mid bi delt_p",
+ "Pose un genou et la main du même côté sur le banc, dos plat et parallèle au sol.|Tire l’haltère vers la hanche, coude près du corps.|Redescends jusqu’à l’extension du bras, en laissant l’omoplate s’étirer.",
+ "Tire vers la hanche plutôt que vers l’épaule pour mieux cibler le grand dorsal.|Évite de tourner le buste pour monter la charge."],
+"Rowing à la machine": ["Machine à rowing avec appui poitrine", "mid lat", "bi delt_p",
+ "Règle le siège pour que les poignées soient à hauteur du bas de la poitrine, poitrine contre l’appui.|Tire les poignées vers toi en serrant les omoplates.|Reviens en contrôle jusqu’à l’extension des bras.",
+ "L’appui poitrine soulage le bas du dos : garde le contact pendant toute la série.|Ne hausse pas les épaules en tirant."],
+"Rowing buste penché haltères": ["Deux haltères", "mid lat", "bi delt_p low",
+ "Debout, genoux fléchis, buste penché à environ 45°, dos plat, haltères bras tendus.|Tire les deux haltères vers les hanches, coudes près du corps.|Redescends en contrôle.",
+ "Les haltères permettent de tirer plus haut qu’à la barre : serre bien les omoplates en haut.|Garde la nuque dans l’alignement du dos."],
+"Tirage bras tendus poulie haute": ["Poulie haute, barre droite ou corde", "lat", "tri delt_p abs",
+ "Debout face à la poulie, buste légèrement penché, saisis la barre bras presque tendus.|Abaisse la barre en arc de cercle jusqu’aux cuisses, sans plier davantage les coudes.|Remonte en contrôle jusqu’à hauteur du visage.",
+ "Les bras restent tendus : si tu plies, les triceps prennent le relais.|Charge légère à modérée, en cherchant la contraction des dorsaux en bas."],
+"Pull-over poulie haute": ["Poulie haute, corde", "lat", "tri pec abs",
+ "Face à la poulie, recule d’un pas, buste penché à environ 45°, bras tendus au-dessus de la tête, corde en main.|Ramène la corde vers les hanches en un grand arc de cercle, bras presque tendus.|Remonte lentement jusqu’à l’étirement complet des dorsaux.",
+ "Par rapport au tirage bras tendus, le buste plus penché allonge l’étirement en haut.|Garde le dos plat et les abdominaux gainés."],
+"Soulevé de terre": ["Barre, disques", "low glute ham", "quad trap lat fa",
+ "Pieds largeur de hanches, barre au-dessus du milieu du pied. Fléchis les jambes et saisis la barre juste à l’extérieur des genoux, dos plat, poitrine sortie.|Pousse dans le sol et redresse-toi en gardant la barre contre les jambes, hanches et épaules montant ensemble.|Termine debout sans te pencher en arrière, puis redescends en reculant d’abord les hanches.",
+ "Le dos reste plat du début à la fin : s’il s’arrondit, la charge est trop lourde.|Garde la barre au contact du corps, elle ne doit pas s’éloigner des tibias."],
+"Rack pull": ["Barre, rack avec sécurités réglées à hauteur des genoux", "low trap", "glute ham fa",
+ "Barre posée sur les sécurités, juste sous ou au niveau des genoux. Place-toi comme pour un soulevé de terre, dos plat.|Redresse-toi en poussant les hanches vers l’avant, barre contre les cuisses.|Repose la barre en contrôle sur les sécurités.",
+ "L’amplitude réduite permet de charger plus lourd : utilise des sangles si la prise lâche avant le dos.|Ne te penche pas en arrière en haut du mouvement."],
+
+/* ----- Épaules ----- */
+"Développé militaire barre": ["Barre, rack", "delt_a", "delt_l tri trap",
+ "Debout, barre posée sur le haut de la poitrine, prise un peu plus large que les épaules, coudes sous la barre.|Pousse la barre à la verticale en reculant légèrement la tête pour la laisser passer.|Termine bras tendus au-dessus de la tête, puis redescends en contrôle.",
+ "Serre les fessiers et les abdominaux pour ne pas cambrer.|N’utilise pas l’élan des jambes, sauf si tu le fais volontairement."],
+"Développé haltères assis": ["Banc à dossier (quasi vertical), deux haltères", "delt_a", "delt_l tri",
+ "Assis, dos contre le dossier, haltères à hauteur des oreilles, paumes vers l’avant.|Pousse à la verticale jusqu’à l’extension des bras, sans entrechoquer les haltères.|Redescends jusqu’à ce que les coudes passent légèrement sous la ligne des épaules.",
+ "Garde les avant-bras verticaux pendant tout le mouvement.|Monte les haltères depuis les genoux pour te mettre en place, un à la fois si besoin."],
+"Développé Arnold": ["Banc à dossier, deux haltères", "delt_a delt_l", "tri",
+ "Assis, haltères devant les épaules, paumes tournées vers toi.|Pousse vers le haut en tournant progressivement les paumes vers l’avant.|Redescends en faisant la rotation inverse pour revenir paumes vers toi.",
+ "La rotation doit être fluide et répartie sur toute la montée.|Prends plus léger que sur un développé classique."],
+"Développé épaules à la machine": ["Machine à développé épaules", "delt_a", "delt_l tri",
+ "Règle le siège pour que les poignées soient à hauteur des épaules, dos plaqué au dossier.|Pousse vers le haut sans verrouiller brutalement les coudes.|Redescends en contrôle sans laisser reposer la charge.",
+ "Bon choix en fin de séance, quand la stabilité devient limitante aux haltères.|Garde le bas du dos en contact avec le dossier."],
+"Développé épaules à la Smith": ["Barre guidée (Smith machine), banc à dossier", "delt_a", "delt_l tri",
+ "Place le banc pour que la barre descende juste devant le visage, vers le haut de la poitrine.|Déverrouille et descends la barre en contrôle jusqu’au menton.|Pousse jusqu’à l’extension des bras, puis reverrouille en fin de série.",
+ "Vérifie la trajectoire à vide avant de charger.|Ne descends pas derrière la nuque : la position est plus contraignante pour l’épaule."],
+"Élévations latérales haltères": ["Deux haltères légers", "delt_l", "trap delt_a",
+ "Debout, haltères le long du corps, coudes légèrement fléchis, buste très légèrement penché.|Monte les bras sur les côtés jusqu’à l’horizontale, coudes au niveau des mains ou un peu au-dessus.|Redescends lentement, sans laisser tomber.",
+ "Ne monte pas plus haut que les épaules et ne hausse pas les trapèzes.|Si tu dois donner de l’élan avec le buste, prends plus léger."],
+"Élévations latérales poulie": ["Poulie basse, poignée", "delt_l", "trap",
+ "Debout de profil à la poulie, saisis la poignée avec la main la plus éloignée, câble passant devant toi.|Monte le bras sur le côté jusqu’à l’horizontale, coude légèrement fléchi.|Redescends lentement en retenant le câble.",
+ "Le câble garde l’épaule sous tension dès le bas du mouvement, contrairement à l’haltère.|Tiens-toi au montant avec l’autre main pour rester stable."],
+"Élévations latérales machine": ["Machine à élévations latérales", "delt_l", "trap",
+ "Règle le siège pour que tes épaules soient dans l’axe de rotation de la machine, bras contre les coussins.|Monte les coudes sur les côtés jusqu’à l’horizontale.|Redescends en contrôle sans laisser reposer la charge.",
+ "Pousse avec les coudes, pas avec les mains.|Garde les épaules basses."],
+"Élévations frontales haltères": ["Deux haltères légers", "delt_a", "delt_l",
+ "Debout, haltères devant les cuisses, paumes vers toi.|Monte un bras ou les deux devant toi jusqu’à hauteur des épaules, coude légèrement fléchi.|Redescends lentement.",
+ "Reste droit, sans te pencher en arrière pour lancer la charge.|Les développés sollicitent déjà beaucoup l’avant de l’épaule : peu de séries suffisent."],
+"Élévations frontales poulie": ["Poulie basse, barre droite ou corde", "delt_a", "delt_l",
+ "Dos à la poulie, câble passant entre les jambes, saisis la barre devant les cuisses.|Monte les bras tendus devant toi jusqu’à hauteur des épaules.|Redescends lentement en retenant le câble.",
+ "Garde les abdominaux gainés pour ne pas cambrer.|La tension est constante : inutile de charger lourd."],
+"Oiseau haltères buste penché": ["Deux haltères légers (banc possible)", "delt_p", "mid trap",
+ "Debout genoux fléchis ou assis au bord d’un banc, buste penché presque à l’horizontale, haltères sous la poitrine.|Écarte les bras sur les côtés, coudes légèrement fléchis, jusqu’à l’horizontale.|Redescends lentement.",
+ "Pour cibler l’arrière de l’épaule plutôt que le milieu du dos, écarte les bras sans serrer fort les omoplates.|Garde la nuque dans l’alignement du dos."],
+"Pec deck inversé": ["Machine pec deck réglée en position inversée", "delt_p", "mid trap",
+ "Assis face au dossier, poitrine en appui, saisis les poignées bras tendus devant toi.|Écarte les bras vers l’arrière jusqu’à les aligner avec les épaules.|Reviens lentement vers l’avant.",
+ "Règle le siège pour que les mains soient à hauteur des épaules.|Charge légère et mouvement contrôlé."],
+"Face pull": ["Poulie haute, corde", "delt_p", "mid trap",
+ "Poulie réglée à hauteur du visage, saisis la corde et recule d’un pas, bras tendus.|Tire la corde vers le visage en écartant les mains, coudes hauts.|Termine les mains de part et d’autre de la tête, puis reviens lentement.",
+ "Pense à tourner les avant-bras vers l’arrière en fin de tirage.|Exercice de posture et de santé de l’épaule : privilégie la qualité à la charge."],
+"Rowing menton": ["Barre, barre EZ ou poulie basse", "delt_l trap", "bi fa",
+ "Debout, barre devant les cuisses, prise à la largeur des épaules ou un peu plus.|Tire la barre le long du corps en montant les coudes sur les côtés.|Arrête-toi quand les coudes atteignent la hauteur des épaules, puis redescends.",
+ "Une prise large et une montée limitée à la hauteur des épaules sont plus confortables pour l’articulation.|Si tu ressens une gêne à l’épaule, remplace par des élévations latérales."],
+
+/* ----- Trapèzes ----- */
+"Shrugs barre": ["Barre (sangles possibles)", "trap", "fa",
+ "Debout, barre tenue bras tendus devant les cuisses, prise à la largeur des épaules.|Hausse les épaules le plus haut possible vers les oreilles, bras tendus.|Marque une seconde en haut, puis redescends lentement.",
+ "Le mouvement est vertical : ne fais pas rouler les épaules.|Garde les bras tendus, ce ne sont pas les biceps qui tirent."],
+"Shrugs haltères": ["Deux haltères (sangles possibles)", "trap", "fa",
+ "Debout, haltères le long du corps, paumes vers toi.|Hausse les épaules à la verticale le plus haut possible.|Tiens une seconde, puis redescends lentement jusqu’à l’étirement.",
+ "Les haltères sur les côtés laissent une trajectoire plus naturelle qu’à la barre.|Regarde droit devant, sans avancer la tête."],
+"Shrugs à la Smith": ["Barre guidée (Smith machine)", "trap", "fa",
+ "Debout, barre guidée devant les cuisses, bras tendus.|Hausse les épaules à la verticale.|Tiens une seconde en haut, redescends lentement, puis reverrouille en fin de série.",
+ "La barre guidée permet de se concentrer sur la contraction.|Peut aussi se faire dos à la barre, selon ton confort."],
+"Shrugs poulie basse": ["Poulie basse, barre droite", "trap", "fa",
+ "Debout face à la poulie basse, barre tenue bras tendus.|Hausse les épaules vers les oreilles.|Tiens une seconde, puis redescends en contrôle.",
+ "La tension reste constante, y compris en bas du mouvement.|Recule légèrement pour que le câble ne frotte pas contre toi."],
+"Marche du fermier": ["Deux haltères lourds, kettlebells ou trap bar, de la place pour marcher", "trap fa", "abs obl",
+ "Soulève les charges comme pour un soulevé de terre, dos plat, et tiens-toi droit.|Marche à petits pas réguliers, épaules basses et en arrière, regard devant.|Repose les charges en fléchissant les jambes, dos plat.",
+ "Note la distance ou la durée en secondes dans la colonne Reps.|Ne laisse pas les épaules s’enrouler vers l’avant."],
+
+/* ----- Biceps ----- */
+"Curl barre droite": ["Barre droite", "bi", "fa",
+ "Debout, barre tenue bras tendus en supination, prise à la largeur des épaules, coudes le long du corps.|Fléchis les coudes pour monter la barre vers les épaules, sans avancer les coudes.|Redescends lentement jusqu’à l’extension presque complète.",
+ "Le buste ne bouge pas : s’il se balance, la charge est trop lourde.|Si les poignets tirent, passe à la barre EZ."],
+"Curl barre EZ": ["Barre EZ", "bi", "fa",
+ "Debout, saisis la barre EZ sur ses parties inclinées, coudes le long du corps.|Monte la barre vers les épaules en gardant les coudes fixes.|Redescends lentement.",
+ "La prise inclinée soulage les poignets par rapport à la barre droite.|Garde les coudes près des côtes pendant toute la série."],
+"Curl haltères": ["Deux haltères", "bi", "fa",
+ "Debout ou assis, haltères le long du corps, paumes vers l’intérieur.|Monte les deux haltères en tournant les paumes vers le haut pendant la montée.|Redescends lentement en revenant à la position de départ.",
+ "La rotation du poignet (supination) fait partie du travail du biceps : termine paume vers l’épaule.|Ne lance pas les haltères avec le dos."],
+"Curl haltères alterné": ["Deux haltères", "bi", "fa",
+ "Debout ou assis, haltères le long du corps.|Monte un haltère en tournant la paume vers le haut, coude fixe.|Redescends-le complètement avant de monter l’autre.",
+ "Travailler un bras à la fois permet de mieux se concentrer sur chaque côté.|Compte les répétitions par bras."],
+"Curl incliné haltères": ["Banc incliné (45 à 60°), deux haltères", "bi", "fa",
+ "Assis sur le banc incliné, dos appuyé, bras pendant à la verticale, paumes vers l’avant.|Monte les haltères sans avancer les coudes.|Redescends lentement jusqu’à l’étirement complet.",
+ "La position étire le biceps : prends plus léger que debout.|Garde les épaules en arrière, contre le dossier."],
+"Curl marteau": ["Deux haltères", "bi fa", "",
+ "Debout, haltères le long du corps, paumes face à face.|Monte les haltères en gardant les paumes face à face, coudes fixes.|Redescends lentement.",
+ "La prise neutre sollicite fortement le muscle sur le dessus de l’avant-bras, en plus du biceps.|Peut se faire en alterné ou en croisant devant la poitrine."],
+"Curl marteau à la corde": ["Poulie basse, corde", "bi fa", "",
+ "Debout face à la poulie basse, saisis la corde paumes face à face.|Monte les mains vers les épaules, coudes le long du corps.|Redescends lentement en retenant le câble.",
+ "Recule d’un petit pas pour garder la tension en bas.|Écarte légèrement les brins de la corde en haut."],
+"Curl pupitre (Larry Scott)": ["Pupitre à biceps, barre EZ ou haltère", "bi", "fa",
+ "Assis, aisselles calées en haut du pupitre, bras à plat sur le coussin.|Monte la barre vers les épaules sans décoller les bras du coussin.|Redescends lentement jusqu’à l’extension presque complète.",
+ "Ne verrouille pas brutalement les coudes en bas : l’articulation est en position vulnérable.|Le pupitre empêche de tricher : la charge sera plus légère qu’au curl debout."],
+"Curl concentré": ["Un haltère, banc", "bi", "fa",
+ "Assis, jambes écartées, coude calé contre l’intérieur de la cuisse, bras tendu.|Monte l’haltère vers l’épaule sans bouger le haut du bras.|Redescends lentement.",
+ "Marque une seconde de contraction en haut.|Le buste reste penché et immobile."],
+"Curl poulie basse": ["Poulie basse, barre droite ou EZ", "bi", "fa",
+ "Debout face à la poulie basse, barre tenue en supination, coudes le long du corps.|Monte la barre vers les épaules.|Redescends lentement en retenant le câble.",
+ "La tension est constante, y compris en haut du mouvement.|Recule d’un petit pas pour que les disques ne se reposent pas en bas."],
+"Curl poulie haute vis-à-vis": ["Deux poulies hautes en vis-à-vis, poignées", "bi", "fa",
+ "Debout au centre, saisis une poignée dans chaque main, bras tendus à l’horizontale.|Fléchis les coudes pour amener les mains vers les oreilles.|Reviens lentement bras tendus.",
+ "Garde les coudes à hauteur des épaules, sans les laisser descendre.|Exercice de contraction : charge légère."],
+"Curl araignée (spider curl)": ["Banc incliné (45°), barre EZ ou haltères", "bi", "fa",
+ "Allonge-toi à plat ventre sur le banc incliné, bras pendant à la verticale devant toi.|Monte la charge en gardant le haut des bras vertical.|Redescends lentement jusqu’à l’extension.",
+ "Aucun élan possible : la contraction en haut est très forte.|Garde la poitrine en appui sur le banc."],
+"Curl à la machine": ["Machine à biceps", "bi", "fa",
+ "Règle le siège pour que tes coudes soient dans l’axe de rotation, bras à plat sur le coussin.|Monte les poignées vers les épaules.|Redescends en contrôle sans laisser reposer la charge.",
+ "Ne décolle pas les coudes du coussin.|Évite l’extension brutale en bas du mouvement."],
+"Curl poulie dos à la machine (bayésien)": ["Poulie basse, poignée", "bi", "fa",
+ "Dos à la poulie basse, poignée dans une main, avance d’un pas : le bras part légèrement en arrière du corps.|Fléchis le coude pour amener la main vers l’épaule, sans avancer le coude.|Redescends lentement jusqu’à l’étirement, bras derrière toi.",
+ "Le biceps travaille en position étirée, comme au curl incliné.|Fais toutes les répétitions d’un bras, puis de l’autre."],
+/* ----- Triceps ----- */
+"Extension poulie haute barre": ["Poulie haute, barre droite ou en V", "tri", "",
+ "Debout face à la poulie haute, saisis la barre en pronation, coudes collés au corps, avant-bras à l’horizontale.|Tends les bras vers le bas jusqu’à l’extension complète.|Remonte lentement jusqu’à l’horizontale, sans décoller les coudes.",
+ "Seuls les avant-bras bougent : les coudes restent fixes le long du corps.|Ne te penche pas sur la barre pour pousser avec le poids du corps."],
+"Extension poulie haute corde": ["Poulie haute, corde", "tri", "",
+ "Debout face à la poulie haute, saisis la corde paumes face à face, coudes collés au corps.|Tends les bras vers le bas en écartant les brins de la corde en fin de mouvement.|Remonte lentement.",
+ "L’écartement de la corde en bas renforce la contraction.|Garde les épaules basses."],
+"Extension poulie haute un bras": ["Poulie haute, poignée", "tri", "",
+ "Debout face à la poulie haute, saisis la poignée d’une main (en pronation ou en supination), coude contre le corps.|Tends le bras vers le bas jusqu’à l’extension complète.|Remonte lentement.",
+ "Travailler un bras à la fois aide à corriger un déséquilibre entre les deux côtés.|Stabilise le coude avec l’autre main si besoin."],
+"Barre au front": ["Banc plat, barre EZ", "tri", "",
+ "Allongé, barre tenue bras tendus au-dessus de la poitrine, prise serrée.|Fléchis les coudes pour descendre la barre vers le front ou juste derrière la tête, haut des bras immobile.|Tends les bras pour revenir à la position de départ.",
+ "Garde les coudes pointés vers le plafond, sans les laisser s’écarter.|Descendre derrière la tête plutôt que sur le front est souvent plus doux pour les coudes."],
+"Extension nuque haltère": ["Un haltère, banc à dossier", "tri", "",
+ "Assis, tiens l’haltère à deux mains au-dessus de la tête, bras tendus.|Fléchis les coudes pour descendre l’haltère derrière la nuque, coudes pointés vers le haut.|Tends les bras pour remonter.",
+ "Garde les coudes aussi serrés que possible.|Gaine les abdominaux pour ne pas cambrer."],
+"Extension nuque poulie corde": ["Poulie haute ou basse, corde", "tri", "",
+ "Dos à la poulie, corde tenue derrière la nuque, coudes pointés vers l’avant et le haut, un pied devant.|Tends les bras vers l’avant et le haut.|Reviens lentement, mains derrière la nuque.",
+ "La position bras levés étire la longue portion du triceps.|Le buste reste fixe, légèrement penché en avant."],
+"Développé couché prise serrée": ["Banc plat, barre, supports", "tri", "pec delt_a",
+ "Allongé comme pour un développé couché, saisis la barre à la largeur des épaules.|Descends la barre vers le bas de la poitrine en gardant les coudes près du corps.|Pousse jusqu’à l’extension des bras.",
+ "Inutile de serrer les mains davantage que la largeur des épaules : cela force sur les poignets.|Les coudes frôlent les côtes pendant la descente."],
+"Dips buste droit": ["Barres parallèles (lest possible)", "tri", "pec delt_a",
+ "En appui bras tendus sur les barres, buste droit, jambes sous toi.|Descends en fléchissant les coudes vers l’arrière, près du corps.|Remonte jusqu’à l’extension des bras.",
+ "Buste vertical et coudes serrés pour cibler les triceps plutôt que les pectoraux.|Limite la descente à ce que tes épaules supportent sans gêne."],
+"Dips entre deux bancs": ["Deux bancs (ou un banc et une chaise stable)", "tri", "delt_a pec",
+ "Mains en appui sur le bord d’un banc derrière toi, talons posés sur l’autre banc, fesses dans le vide.|Descends en fléchissant les coudes jusqu’à environ 90°.|Remonte en poussant jusqu’à tendre les bras.",
+ "Garde le dos près du banc pour ménager les épaules.|Plus facile : pieds au sol, genoux fléchis. Plus dur : un disque posé sur les cuisses."],
+"Dips à la machine": ["Machine à dips assis", "tri", "pec delt_a",
+ "Assis, dos contre le dossier, mains sur les poignées de part et d’autre, coudes fléchis.|Pousse les poignées vers le bas jusqu’à l’extension des bras.|Remonte en contrôle sans laisser reposer la charge.",
+ "Garde les coudes près du corps.|Boucle la ceinture ou cale-toi si la charge te soulève du siège."],
+"Kickback haltère": ["Un haltère léger, banc", "tri", "",
+ "Un genou et une main sur le banc, dos plat, haut du bras collé au buste et parallèle au sol.|Tends le bras vers l’arrière jusqu’à l’extension complète.|Reviens lentement à 90°.",
+ "Le haut du bras ne bouge pas : seul l’avant-bras se déplace.|Charge légère, avec une seconde de contraction bras tendu."],
+"Kickback poulie": ["Poulie basse, poignée ou câble nu", "tri", "",
+ "Face à la poulie basse, buste penché, haut du bras collé au buste et parallèle au sol.|Tends le bras vers l’arrière.|Reviens lentement en retenant le câble.",
+ "Le câble maintient la tension là où l’haltère la perd, en début de mouvement.|Garde le coude haut et immobile."],
+"Pompes prise serrée": ["Poids du corps", "tri", "pec delt_a abs",
+ "En position de pompe, mains à la largeur des épaules ou un peu plus serrées.|Descends en gardant les coudes le long du corps.|Pousse jusqu’à l’extension des bras.",
+ "Garde le corps aligné, abdominaux et fessiers gainés.|Si les mains très rapprochées gênent les poignets, écarte-les légèrement."],
+
+/* ----- Avant-bras ----- */
+"Flexion des poignets barre": ["Barre ou haltères, banc", "fa", "",
+ "Assis, avant-bras posés sur les cuisses ou sur un banc, paumes vers le haut, poignets dans le vide.|Laisse descendre la barre en ouvrant légèrement les doigts.|Referme les doigts et enroule les poignets vers le haut.",
+ "Petite amplitude, mouvement lent, séries plutôt longues.|Les avant-bras restent en appui pendant toute la série."],
+"Extension des poignets barre": ["Barre légère ou haltères, banc", "fa", "",
+ "Assis, avant-bras posés sur les cuisses ou sur un banc, paumes vers le bas, poignets dans le vide.|Laisse descendre la barre en fléchissant les poignets.|Remonte en relevant le dos des mains vers toi.",
+ "Les extenseurs sont bien plus faibles que les fléchisseurs : commence très léger.|Ne décolle pas les avant-bras."],
+"Curl inversé barre": ["Barre droite", "fa", "bi",
+ "Debout, barre tenue en pronation (paumes vers le bas), à la largeur des épaules.|Monte la barre vers les épaules, coudes le long du corps.|Redescends lentement.",
+ "Garde les poignets droits, dans le prolongement des avant-bras.|La charge sera nettement plus légère qu’au curl classique."],
+"Curl inversé barre EZ": ["Barre EZ", "fa", "bi",
+ "Debout, saisis la barre EZ en pronation sur ses parties inclinées.|Monte la barre vers les épaules, coudes fixes.|Redescends lentement.",
+ "La barre EZ est plus confortable pour les poignets que la barre droite.|Garde les poignets fermes."],
+"Enroulement de poignets": ["Rouleau à poignets (barre courte, corde, disque léger)", "fa", "delt_a",
+ "Debout, tiens le rouleau à deux mains, bras tendus devant toi ou coudes au corps.|Enroule la corde en tournant les poignets l’un après l’autre jusqu’à monter le disque.|Déroule lentement, en contrôlant la descente.",
+ "Garder les coudes au corps évite que les épaules fatiguent avant les avant-bras.|Une montée et une descente comptent pour une répétition."],
+"Suspension à la barre": ["Barre de traction", "fa", "lat",
+ "Saisis la barre en pronation, à la largeur des épaules.|Suspends-toi bras tendus, épaules légèrement engagées vers le bas.|Tiens le plus longtemps possible, puis repose les pieds.",
+ "Note la durée en secondes dans la colonne Reps.|Trop facile : ajoute un lest ou tiens à une main."],
+"Pince à main": ["Pince de musculation (gripper)", "fa", "",
+ "Cale la pince dans la paume, la branche appuyée contre la base du pouce.|Serre jusqu’à ce que les deux branches se touchent.|Relâche lentement.",
+ "Choisis une résistance qui te permet de fermer complètement la pince.|Travaille les deux mains."],
+
+/* ----- Abdominaux ----- */
+"Crunch au sol": ["Tapis", "abs", "obl",
+ "Allongé sur le dos, genoux fléchis, pieds au sol, mains aux tempes ou croisées sur la poitrine.|Enroule le buste en décollant les épaules du sol, en rapprochant les côtes du bassin.|Redescends lentement sans reposer complètement la tête.",
+ "Le bas du dos reste au sol : c’est un enroulement, pas un redressement complet.|Ne tire pas sur la nuque avec les mains."],
+"Crunch poulie haute": ["Poulie haute, corde", "abs", "obl",
+ "À genoux face à la poulie haute, corde tenue de part et d’autre de la tête.|Enroule le buste vers le bas en rapprochant les coudes des genoux.|Remonte lentement, sans te redresser complètement.",
+ "Les hanches restent fixes : si elles reculent, ce ne sont plus les abdominaux qui travaillent.|Les mains restent près de la tête pendant tout le mouvement."],
+"Crunch à la machine": ["Machine à abdominaux", "abs", "",
+ "Règle le siège, cale tes pieds et saisis les poignées.|Enroule le buste vers l’avant en contractant les abdominaux.|Reviens lentement sans laisser reposer la charge.",
+ "Pousse avec les abdominaux, pas avec les bras.|Expire pendant l’enroulement."],
+"Relevé de jambes suspendu": ["Barre de traction (sangles possibles)", "abs", "obl fa quad",
+ "Suspendu à la barre, bras tendus, jambes tendues ou légèrement fléchies.|Monte les jambes devant toi en enroulant le bassin vers le haut.|Redescends lentement sans te balancer.",
+ "C’est l’enroulement du bassin en haut du mouvement qui fait travailler les abdominaux.|Trop dur : monte seulement les genoux."],
+"Relevé de genoux chaise romaine": ["Chaise romaine (appuis avant-bras et dossier)", "abs", "obl quad",
+ "En appui sur les avant-bras, dos contre le dossier, jambes pendantes.|Monte les genoux vers la poitrine en enroulant le bassin.|Redescends lentement.",
+ "Évite de balancer les jambes pour prendre de l’élan.|Plus dur : jambes tendues."],
+"Relevé de jambes au sol": ["Tapis", "abs", "quad",
+ "Allongé sur le dos, mains sous les fesses ou le long du corps, jambes tendues.|Monte les jambes à la verticale.|Redescends lentement sans poser les talons au sol.",
+ "Garde le bas du dos plaqué au sol. S’il se creuse, descends moins bas ou fléchis les genoux.|Mouvement lent, sans élan."],
+"Enroulement de bassin": ["Tapis ou banc", "abs", "",
+ "Allongé sur le dos, cuisses à la verticale, genoux fléchis.|Décolle le bassin du sol en amenant les genoux vers la poitrine.|Redescends lentement.",
+ "L’amplitude est courte : c’est le bassin qui s’enroule, pas les jambes qui se balancent.|Tiens-toi au banc derrière la tête si besoin."],
+"Gainage planche": ["Tapis", "abs", "obl delt_a",
+ "En appui sur les avant-bras et les pointes de pieds, coudes sous les épaules.|Aligne tête, dos, bassin et talons, abdominaux et fessiers contractés.|Tiens la position en respirant normalement.",
+ "Note la durée en secondes dans la colonne Reps.|Si le bas du dos se creuse, arrête la série : la position n’est plus tenue."],
+"Gainage latéral": ["Tapis", "obl", "abs abd",
+ "Couché sur le côté, en appui sur l’avant-bras, coude sous l’épaule, pieds superposés.|Décolle le bassin pour aligner épaules, hanches et chevilles.|Tiens la position, puis change de côté.",
+ "Note la durée en secondes par côté dans la colonne Reps.|Ne laisse pas le bassin reculer ni tomber."],
+"Roulette abdominale": ["Roulette abdominale, tapis", "abs", "lat delt_a obl",
+ "À genoux, mains sur la roulette, bras tendus sous les épaules.|Roule vers l’avant en gardant le dos plat et les abdominaux gainés, aussi loin que tu peux le contrôler.|Reviens en ramenant la roulette vers les genoux.",
+ "Arrête-toi avant que le bas du dos ne se creuse.|Commence par de petites amplitudes, face à un mur qui sert de butée."],
+"Rotation russe": ["Tapis (disque, haltère ou médecine-ball possible)", "obl", "abs",
+ "Assis, genoux fléchis, buste incliné en arrière, dos droit.|Tourne les épaules d’un côté en amenant les mains près de la hanche.|Tourne de l’autre côté, en gardant le buste incliné.",
+ "C’est le buste qui tourne, pas seulement les bras.|Pieds au sol pour débuter, décollés pour durcir."],
+"Rotation à la poulie (bûcheron)": ["Poulie haute ou basse, poignée", "obl", "abs delt_a",
+ "De profil à la poulie, saisis la poignée à deux mains, bras presque tendus.|Tire la poignée en diagonale à travers le corps, en tournant le buste et en pivotant sur le pied arrière.|Reviens lentement à la position de départ.",
+ "Le mouvement part du tronc, les bras ne font que transmettre.|Fais toutes les répétitions d’un côté, puis de l’autre."],
+
+/* ----- Lombaires ----- */
+"Extension lombaires au banc": ["Banc à lombaires (45° ou horizontal)", "low", "glute ham",
+ "Cale tes chevilles, coussin au niveau du haut des cuisses, hanches libres.|Descends le buste en fléchissant aux hanches, dos plat.|Remonte jusqu’à l’alignement jambes-buste, sans aller au-delà.",
+ "Ne cambre pas en haut du mouvement : arrête-toi à l’alignement.|Plus dur : tiens un disque contre la poitrine."],
+"Extension lombaires à la machine": ["Machine à lombaires", "low", "glute",
+ "Assis, dos contre le coussin, pieds calés.|Pousse le coussin vers l’arrière en redressant le buste.|Reviens lentement vers l’avant sans laisser reposer la charge.",
+ "Mouvement lent et contrôlé, sans à-coup en fin de course.|Reste dans une amplitude confortable."],
+"Good morning": ["Barre, rack", "low ham", "glute",
+ "Debout, barre posée sur le haut du dos, genoux légèrement fléchis.|Penche le buste vers l’avant en reculant les hanches, dos plat, jusqu’à sentir l’étirement des ischio-jambiers.|Redresse-toi en ramenant les hanches vers l’avant.",
+ "Commence très léger : la barre est loin des hanches, la contrainte sur le dos est forte.|Le dos reste plat et les genoux gardent le même angle."],
+"Superman": ["Tapis", "low", "glute",
+ "Allongé à plat ventre, bras tendus devant toi.|Décolle en même temps les bras, la poitrine et les jambes du sol.|Tiens une à deux secondes, puis redescends lentement.",
+ "Garde le regard vers le sol pour ne pas casser la nuque.|Cherche à t’allonger plutôt qu’à monter haut."],
+
+/* ----- Quadriceps ----- */
+"Squat barre": ["Barre, rack avec sécurités", "quad glute", "ham low add abs",
+ "Barre posée sur le haut du dos, pieds à la largeur des épaules, pointes légèrement ouvertes.|Descends en fléchissant hanches et genoux ensemble, dos plat, genoux dans l’axe des pieds.|Descends au moins jusqu’à ce que les cuisses soient parallèles au sol, puis remonte en poussant dans le sol.",
+ "Garde les talons au sol et le poids réparti sur tout le pied.|Les genoux peuvent avancer, mais ne doivent pas rentrer vers l’intérieur.|Règle les sécurités juste sous le point le plus bas de la barre."],
+"Squat avant (front squat)": ["Barre, rack", "quad", "glute abs low",
+ "Barre posée sur l’avant des épaules, coudes hauts, prise du bout des doigts ou bras croisés.|Descends en gardant le buste le plus vertical possible.|Remonte en poussant dans le sol, coudes toujours hauts.",
+ "Si les coudes tombent, la barre glisse : garde-les levés toute la série.|La position droite accentue le travail des quadriceps et soulage le bas du dos."],
+"Hack squat": ["Machine hack squat", "quad", "glute",
+ "Dos et épaules contre les coussins, pieds à la largeur des épaules sur le plateau.|Déverrouille, puis descends en fléchissant les genoux jusqu’à l’amplitude que tu contrôles.|Pousse pour remonter sans verrouiller brutalement les genoux.",
+ "Pieds bas sur le plateau : davantage de quadriceps. Pieds hauts : davantage de fessiers.|Garde le bas du dos plaqué au dossier."],
+"Presse à cuisses": ["Presse à cuisses (inclinée ou horizontale)", "quad", "glute ham",
+ "Assis, dos et fesses plaqués au siège, pieds à la largeur des épaules au milieu du plateau.|Déverrouille, puis descends le plateau en fléchissant les genoux vers la poitrine.|Pousse sans verrouiller complètement les genoux en fin de mouvement.",
+ "Arrête la descente avant que les fesses ne décollent du siège.|N’appuie pas sur tes genoux avec les mains."],
+"Squat à la Smith": ["Barre guidée (Smith machine)", "quad", "glute",
+ "Barre sur le haut du dos, pieds légèrement avancés par rapport à la barre.|Déverrouille, puis descends jusqu’à ce que les cuisses soient parallèles au sol.|Remonte en poussant, puis reverrouille en fin de série.",
+ "Avancer les pieds permet de garder le buste droit sur le rail.|Règle les butées de sécurité."],
+"Squat gobelet": ["Un haltère ou une kettlebell", "quad", "glute abs",
+ "Debout, tiens la charge contre la poitrine à deux mains, coudes vers le bas.|Descends entre tes jambes, buste droit, coudes à l’intérieur des genoux.|Remonte en poussant dans le sol.",
+ "Très bon exercice pour apprendre le squat : la charge devant aide à rester droit.|Garde les talons au sol."],
+"Fentes haltères": ["Deux haltères", "quad glute", "ham",
+ "Debout, haltères le long du corps.|Fais un grand pas en avant et descends jusqu’à ce que le genou arrière frôle le sol.|Pousse sur la jambe avant pour revenir, puis change de jambe.",
+ "Le genou avant reste dans l’axe du pied, sans rentrer vers l’intérieur.|Un pas plus long sollicite davantage les fessiers, un pas plus court les quadriceps."],
+"Fentes marchées": ["Deux haltères ou barre, de la place pour avancer", "quad glute", "ham",
+ "Debout, charge en main, fais un pas en avant et descends en fente.|Pousse sur la jambe avant pour te relever et enchaîne directement avec l’autre jambe.|Continue en avançant sur la distance prévue.",
+ "Garde le buste droit et le regard devant.|Compte les répétitions par jambe."],
+"Fentes bulgares": ["Banc, deux haltères", "quad glute", "ham",
+ "Dos au banc, pose le dessus d’un pied dessus, l’autre pied environ un grand pas devant.|Descends à la verticale jusqu’à ce que la cuisse avant soit parallèle au sol.|Remonte en poussant sur la jambe avant.",
+ "Presque tout le poids repose sur la jambe avant, la jambe arrière sert d’équilibre.|Fais toutes les répétitions d’une jambe, puis de l’autre."],
+"Leg extension": ["Machine leg extension", "quad", "",
+ "Assis, dos au dossier, genoux dans l’axe de rotation, coussin au bas des tibias.|Tends les jambes jusqu’à l’extension complète.|Redescends lentement sans laisser reposer la charge.",
+ "Marque une seconde de contraction jambes tendues.|Tiens les poignées pour garder les fesses au siège."],
+"Sissy squat": ["Poids du corps (appui ou banc à sissy squat)", "quad", "abs",
+ "Debout, tiens un appui d’une main, pieds largeur de hanches.|Monte sur les pointes et laisse avancer les genoux en inclinant le corps en arrière, hanches tendues.|Remonte en contractant les quadriceps.",
+ "Le corps reste aligné des genoux aux épaules.|Exercice exigeant pour les genoux : progresse lentement en amplitude."],
+"Montée sur banc (step-up)": ["Banc ou box, haltères possibles", "quad glute", "ham calf",
+ "Face au banc, pose un pied entier dessus.|Monte en poussant sur cette jambe jusqu’à te tenir debout sur le banc.|Redescends lentement avec la même jambe en appui.",
+ "Ne te propulse pas avec la jambe restée au sol.|Fais toutes les répétitions d’une jambe, puis de l’autre."],
+
+/* ----- Ischio-jambiers ----- */
+"Soulevé de terre roumain": ["Barre ou haltères", "ham glute", "low fa",
+ "Debout, barre tenue devant les cuisses, genoux légèrement fléchis.|Recule les hanches et penche le buste, dos plat, en faisant glisser la barre le long des cuisses.|Descends jusqu’à sentir l’étirement des ischio-jambiers, puis redresse-toi en avançant les hanches.",
+ "Ce sont les hanches qui reculent, pas les genoux qui plient davantage.|Arrête la descente dès que le dos commence à s’arrondir."],
+"Soulevé de terre jambes tendues": ["Barre ou haltères", "ham", "glute low",
+ "Debout, barre devant les cuisses, jambes presque tendues.|Penche le buste vers l’avant, dos plat, en laissant descendre la barre vers les pieds.|Remonte en contractant les ischio-jambiers et les fessiers.",
+ "Les jambes sont plus tendues qu’au roumain : l’étirement est plus fort, la charge plus légère.|Garde le dos plat, quitte à descendre moins bas."],
+"Leg curl allongé": ["Machine leg curl allongé", "ham", "calf",
+ "Allongé à plat ventre, genoux dans l’axe de rotation, coussin au-dessus des talons.|Fléchis les genoux pour amener les talons vers les fesses.|Redescends lentement sans laisser reposer la charge.",
+ "Garde les hanches plaquées au banc.|Mouvement sans à-coup, surtout à la descente."],
+"Leg curl assis": ["Machine leg curl assis", "ham", "calf",
+ "Assis, dos au dossier, coussin sur les cuisses verrouillé, l’autre coussin derrière les chevilles.|Fléchis les genoux pour ramener les talons sous le siège.|Reviens lentement jambes tendues.",
+ "La position assise étire davantage les ischio-jambiers que la version allongée.|Verrouille bien le coussin des cuisses pour ne pas décoller."],
+"Leg curl debout": ["Machine leg curl debout ou poulie basse avec sangle de cheville", "ham", "",
+ "Debout, en appui sur la machine, coussin derrière une cheville.|Fléchis le genou pour amener le talon vers la fesse.|Redescends lentement, puis change de jambe en fin de série.",
+ "Garde les hanches immobiles et le buste droit.|Une jambe à la fois : pratique pour corriger un déséquilibre."],
+"Nordic curl": ["Tapis, chevilles calées (partenaire ou appui)", "ham", "glute calf",
+ "À genoux, chevilles bloquées, corps aligné des genoux aux épaules.|Laisse-toi descendre vers l’avant le plus lentement possible en retenant avec les ischio-jambiers.|Amortis avec les mains au sol, puis repousse-toi pour revenir.",
+ "Exercice très difficile : commence par la descente seule.|Garde les hanches tendues, sans casser le corps en deux."],
+"Glute-ham raise": ["Banc GHD (glute-ham developer)", "ham glute", "low calf",
+ "Chevilles calées, genoux juste derrière le coussin, buste à la verticale.|Descends le buste vers l’avant jusqu’à l’horizontale, corps aligné.|Remonte en fléchissant les genoux et en contractant les ischio-jambiers.",
+ "Garde le corps gainé pendant tout le mouvement.|Trop dur : aide-toi légèrement des mains ou d’un élastique."],
+
+/* ----- Fessiers ----- */
+"Hip thrust barre": ["Banc, barre, protection de barre", "glute", "ham quad",
+ "Assis au sol, haut du dos contre le banc, barre posée dans le pli des hanches, pieds à plat.|Pousse dans les talons pour monter les hanches jusqu’à aligner genoux, hanches et épaules.|Contracte les fessiers une seconde en haut, puis redescends en contrôle.",
+ "En haut, les tibias doivent être verticaux : ajuste la distance des pieds.|Rentre le menton et garde les côtes basses pour ne pas cambrer."],
+"Hip thrust à la machine": ["Machine à hip thrust", "glute", "ham quad",
+ "Installe-toi dos contre l’appui, sangle ou coussin sur les hanches, pieds à plat sur le plateau.|Pousse les hanches vers le haut jusqu’à l’extension complète.|Redescends en contrôle.",
+ "Marque une seconde de contraction en haut.|Règle la position des pieds pour sentir les fessiers plutôt que les cuisses."],
+"Pont fessier": ["Tapis (haltère ou barre possible)", "glute", "ham",
+ "Allongé sur le dos, genoux fléchis, pieds à plat près des fesses.|Monte les hanches jusqu’à aligner genoux, hanches et épaules.|Contracte les fessiers en haut, puis redescends lentement.",
+ "Version au sol du hip thrust, avec une amplitude plus courte.|Plus dur : une seule jambe ou une charge sur le bassin."],
+"Kickback fessiers poulie": ["Poulie basse, sangle de cheville", "glute", "ham",
+ "Face à la poulie, sangle à la cheville, buste légèrement penché, mains sur le montant.|Pousse la jambe vers l’arrière, genou presque tendu, sans cambrer.|Reviens lentement, puis change de jambe en fin de série.",
+ "L’amplitude est courte : arrête-toi dès que le bas du dos veut se creuser.|Contracte le fessier une seconde en fin de mouvement."],
+"Extension de hanche à la machine": ["Machine à extension de hanche (glute kickback)", "glute", "ham",
+ "En appui sur la machine, un pied contre le plateau.|Pousse le plateau vers l’arrière en tendant la hanche.|Reviens en contrôle, puis change de jambe en fin de série.",
+ "Garde le dos plat et les abdominaux gainés.|Pousse avec le talon."],
+"Abduction à la machine": ["Machine à abducteurs", "abd", "glute",
+ "Assis, dos au dossier, extérieur des genoux contre les coussins.|Écarte les jambes le plus loin possible.|Reviens lentement sans laisser reposer la charge.",
+ "Pencher légèrement le buste en avant modifie la zone sollicitée : choisis la position où tu sens le mieux le côté des fessiers.|Marque une seconde jambes écartées."],
+"Abduction poulie": ["Poulie basse, sangle de cheville", "abd", "glute",
+ "De profil à la poulie, sangle à la cheville la plus éloignée, main sur le montant.|Écarte la jambe sur le côté, sans pencher le buste.|Reviens lentement, puis change de jambe en fin de série.",
+ "Petite amplitude et mouvement lent.|Garde le bassin de face, sans le faire pivoter."],
+"Soulevé de terre sumo": ["Barre, disques", "glute quad", "add ham low trap fa",
+ "Pieds très écartés, pointes ouvertes, saisis la barre entre les jambes, bras à la verticale.|Dos plat, poitrine sortie, pousse dans le sol en écartant les genoux vers l’extérieur.|Termine debout, hanches verrouillées, puis redescends en contrôle.",
+ "Les genoux suivent la direction des pointes de pieds.|Le buste est plus vertical qu’au soulevé de terre classique."],
+"Fentes arrière": ["Deux haltères ou barre", "glute quad", "ham",
+ "Debout, charge en main, fais un grand pas en arrière.|Descends jusqu’à ce que le genou arrière frôle le sol, buste légèrement penché.|Pousse sur la jambe avant pour revenir debout.",
+ "Le pas vers l’arrière est plus doux pour les genoux que le pas vers l’avant.|Garde le poids sur le talon de la jambe avant."],
+
+/* ----- Adducteurs ----- */
+"Adduction à la machine": ["Machine à adducteurs", "add", "",
+ "Assis, dos au dossier, intérieur des genoux contre les coussins, jambes écartées.|Resserre les jambes jusqu’à ce que les coussins se touchent.|Reviens lentement jusqu’à l’étirement.",
+ "Règle l’écartement de départ pour un étirement confortable, sans forcer.|Évite les à-coups : les adducteurs se blessent facilement."],
+"Adduction poulie": ["Poulie basse, sangle de cheville", "add", "",
+ "De profil à la poulie, sangle à la cheville la plus proche, main sur le montant.|Ramène la jambe vers l’autre en passant devant la jambe d’appui.|Reviens lentement, puis change de jambe en fin de série.",
+ "Garde le buste droit et le bassin immobile.|Charge légère."],
+"Squat sumo": ["Haltère, kettlebell ou barre", "add quad glute", "ham",
+ "Pieds très écartés, pointes ouvertes, charge tenue entre les jambes ou barre sur le dos.|Descends à la verticale en poussant les genoux vers l’extérieur.|Remonte en poussant dans le sol.",
+ "Les genoux restent dans l’axe des pointes de pieds.|Garde le buste droit."],
+
+/* ----- Mollets ----- */
+"Extension mollets debout": ["Machine à mollets debout", "calf", "",
+ "Épaules sous les coussins, avant des pieds sur la marche, talons dans le vide.|Descends les talons le plus bas possible pour étirer les mollets.|Monte le plus haut possible sur la pointe des pieds et tiens une seconde.",
+ "Amplitude complète et sans rebond en bas : marque une pause à l’étirement.|Garde les genoux presque tendus."],
+"Extension mollets assis": ["Machine à mollets assis", "calf", "",
+ "Assis, coussins sur le bas des cuisses, avant des pieds sur la marche.|Déverrouille, puis descends les talons le plus bas possible.|Monte sur la pointe des pieds, tiens une seconde, puis redescends lentement.",
+ "Genoux fléchis, c’est surtout le soléaire, la partie profonde du mollet, qui travaille.|Reverrouille la sécurité en fin de série."],
+"Mollets à la presse": ["Presse à cuisses", "calf", "",
+ "Assis dans la presse, jambes presque tendues, avant des pieds sur le bas du plateau, talons dans le vide.|Laisse revenir le plateau en fléchissant les chevilles.|Pousse avec la pointe des pieds le plus loin possible.",
+ "Garde les sécurités à portée de main : les pieds ne tiennent que par l’avant.|Ne déverrouille pas complètement la presse si elle le permet."],
+"Mollets à la Smith": ["Barre guidée (Smith machine), marche ou step", "calf", "",
+ "Barre sur le haut du dos, avant des pieds sur une marche sous la barre.|Descends les talons pour étirer les mollets.|Monte sur la pointe des pieds, tiens une seconde, puis redescends lentement.",
+ "Vérifie que la marche est stable avant de charger.|Garde les genoux presque tendus."],
+"Mollets un pied haltère": ["Un haltère, marche, appui pour l’équilibre", "calf", "",
+ "Debout sur une marche sur l’avant d’un pied, haltère dans la main du même côté, l’autre main sur un appui.|Descends le talon le plus bas possible.|Monte sur la pointe du pied et tiens une seconde.",
+ "Fais toutes les répétitions d’un pied, puis de l’autre.|L’appui sert à l’équilibre, pas à te hisser."],
+"Mollets penché (donkey)": ["Machine donkey ou marche avec appui pour les mains", "calf", "",
+ "Buste penché à l’horizontale, mains en appui, avant des pieds sur une marche, charge sur le bas du dos ou les hanches.|Descends les talons pour étirer les mollets.|Monte sur la pointe des pieds et tiens une seconde.",
+ "La position penchée, hanches fléchies, augmente l’étirement des mollets.|Garde le dos plat."]
+};
+
+const MUSCLES = {pec:'Pectoraux', delt_a:'Deltoïde antérieur', delt_l:'Deltoïde latéral', delt_p:'Deltoïde postérieur', trap:'Trapèzes', mid:'Milieu du dos (rhomboïdes, trapèze moyen)', lat:'Grand dorsal', low:'Lombaires',
+  bi:'Biceps', tri:'Triceps', fa:'Avant-bras', abs:'Abdominaux (grand droit)', obl:'Obliques', quad:'Quadriceps', ham:'Ischio-jambiers', glute:'Fessiers', add:'Adducteurs', abd:'Abducteurs (moyen fessier)', calf:'Mollets'};
+function ficheKey(exId, name){ const e = BY_ID[exId]; return e && FICHES[e.name] ? e.name : (name && FICHES[name] ? name : null); }
+function nameLink(exId, name){ const k = ficheKey(exId, name); return k ? '<button class="linkname" data-action="fiche" data-n="'+esc(k)+'">'+esc(name)+'</button>' : esc(name); }
+
+/* Schéma du corps (face et dos) : dessin original, muscles ciblés mis en évidence */
+function bodyMap(P, Sx){
+  const c = id => 'm' + (P.includes(id) ? ' p' : Sx.includes(id) ? ' s' : '');
+  const el = (x, y, rx, ry, id, rot) => '<ellipse class="'+c(id)+'" cx="'+x+'" cy="'+y+'" rx="'+rx+'" ry="'+ry+'"'+(rot ? ' transform="rotate('+rot+' '+x+' '+y+')"' : '')+'/>';
+  const base = cx => {
+    let h = '<ellipse class="b" cx="'+cx+'" cy="24" rx="13" ry="16"/><rect class="b" x="'+(cx-7)+'" y="36" width="14" height="14"/>'
+      + '<path class="b" d="M'+(cx-37)+',55 Q'+cx+',45 '+(cx+37)+',55 L'+(cx+31)+',102 Q'+(cx+27)+',128 '+(cx+31)+',160 L'+(cx-31)+',160 Q'+(cx-27)+',128 '+(cx-31)+',102 Z"/>';
+    for (const s of [-1, 1]) h += '<line class="bl" stroke-width="18" x1="'+(cx+s*43)+'" y1="62" x2="'+(cx+s*48)+'" y2="108"/><line class="bl" stroke-width="14" x1="'+(cx+s*49.5)+'" y1="116" x2="'+(cx+s*56)+'" y2="158"/>'
+      + '<circle class="b" cx="'+(cx+s*58)+'" cy="171" r="7"/><line class="bl" stroke-width="28" x1="'+(cx+s*16.5)+'" y1="164" x2="'+(cx+s*18)+'" y2="228"/><line class="bl" stroke-width="19" x1="'+(cx+s*18)+'" y1="242" x2="'+(cx+s*17.5)+'" y2="300"/>'
+      + '<ellipse class="b" cx="'+(cx+s*18.5)+'" cy="316" rx="9" ry="6"/>';
+    return h;
+  };
+  const F = 88, B = 262; let h = '<svg viewBox="0 0 350 346" role="img" aria-label="Schéma du corps, de face et de dos. Muscles principaux : '+esc(P.map(m => MUSCLES[m]).join(', '))+(Sx.length ? '. Muscles secondaires : '+esc(Sx.map(m => MUSCLES[m]).join(', ')) : '')+'.">';
+  h += base(F) + base(B);
+  for (const s of [-1, 1]){
+    /* face */
+    h += '<path class="'+c('trap')+'" d="M'+(F+s*7)+',42 L'+(F+s*28)+',53 L'+(F+s*7)+',54 Z"/>';
+    h += el(F+s*44, 63, 6, 10.5, 'delt_l') + el(F+s*34, 63, 7, 9.5, 'delt_a');
+    h += '<path class="'+c('pec')+'" d="M'+(F+s*2)+',59 L'+(F+s*26)+',58 Q'+(F+s*32)+',72 '+(F+s*25)+',84 Q'+(F+s*12)+',90 '+(F+s*2)+',84 Z"/>';
+    h += el(F+s*46, 88, 7, 15.5, 'bi', s*-5) + el(F+s*53, 137, 5.5, 18, 'fa', s*-8);
+    h += '<path class="'+c('obl')+'" d="M'+(F+s*13)+',92 L'+(F+s*28)+',91 Q'+(F+s*25.5)+',122 '+(F+s*28)+',150 L'+(F+s*13)+',145 Z"/>';
+    h += el(F+s*20, 197, 10.5, 31, 'quad') + el(F+s*6.5, 187, 4.5, 21, 'add');
+    /* dos */
+    h += el(B+s*39, 63, 9.5, 10.5, 'delt_p');
+    h += '<path class="'+c('lat')+'" d="M'+(B+s*17)+',67 L'+(B+s*30)+',72 Q'+(B+s*31)+',98 '+(B+s*23)+',122 L'+(B+s*10)+',126 L'+(B+s*15)+',96 Z"/>';
+    h += el(B+s*6, 134, 5, 17, 'low') + el(B+s*46, 88, 7, 16, 'tri', s*-5) + el(B+s*53, 137, 5.5, 18, 'fa', s*-8);
+    h += el(B+s*23.5, 152, 8, 6.5, 'abd', s*-20) + el(B+s*15, 169, 13.5, 12.5, 'glute') + el(B+s*18.5, 211, 10, 26, 'ham') + el(B+s*17.5, 266, 8, 22, 'calf');
+  }
+  h += '<rect class="'+c('abs')+'" x="'+(F-11)+'" y="90" width="22" height="56" rx="6"/><path class="dv" d="M'+F+',91 V145 M'+(F-10)+',104 H'+(F+10)+' M'+(F-10)+',118 H'+(F+10)+' M'+(F-10)+',132 H'+(F+10)+'"/>';
+  h += '<path class="'+c('trap')+'" d="M'+B+',40 L'+(B+28)+',54 L'+B+',67 L'+(B-28)+',54 Z"/>';
+  h += '<path class="'+c('mid')+'" d="M'+B+',70 L'+(B+15)+',63 L'+(B+13)+',92 L'+B+',100 L'+(B-13)+',92 L'+(B-15)+',63 Z"/>';
+  h += '<text x="'+F+'" y="340">FACE</text><text x="'+B+'" y="340">DOS</text></svg>';
+  return h;
+}
+function renderFiche(){
+  const el = $('#fiche'); if (!el) return;
+  if (!S.fiche || !FICHES[S.fiche]){ S.fiche = null; el.hidden = true; el.innerHTML = ''; document.body.style.overflow = ''; return; }
+  const n = S.fiche, f = FICHES[n], g = (CATALOG.find(e => e.name === n) || {}).group || '';
+  const P = f[1].split(' ').filter(Boolean), Sx = f[2].split(' ').filter(Boolean), li = t => t.split('|').map(x => '<li>'+esc(x)+'</li>').join('');
+  el.hidden = false; document.body.style.overflow = 'hidden';
+  el.innerHTML = '<div class="fiche-in" role="dialog" aria-modal="true" aria-labelledby="fi-t" tabindex="-1">'
+    + '<div class="fiche-head"><button class="btn ghost" data-action="fiche-close">← Retour</button></div>'
+    + '<section class="slab"><div class="eyebrow">'+esc(g)+'</div><h1 id="fi-t">'+esc(n)+'</h1></section>'
+    + '<section class="card pad stack"><h2 class="eyebrow">Matériel</h2><p>'+esc(f[0])+'</p></section>'
+    + '<section class="card pad stack"><h2 class="eyebrow">Muscles ciblés</h2><div class="mmap">'+bodyMap(P, Sx)+'</div><ul class="mleg"><li><i></i><span><b>Principal</b> : '+esc(P.map(m => MUSCLES[m]).join(', '))+'</span></li>'
+    + (Sx.length ? '<li><i class="s"></i><span><b>Secondaire</b> : '+esc(Sx.map(m => MUSCLES[m]).join(', '))+'</span></li>' : '')+'</ul></section>'
+    + '<section class="card pad stack"><h2 class="eyebrow">Exécution</h2><ol class="steps">'+li(f[3])+'</ol></section>'
+    + '<section class="card pad stack"><h2 class="eyebrow">Conseils</h2><ul class="steps">'+li(f[4])+'</ul></section>'
+    + '<p class="small muted">Repères généraux. Commence léger pour apprendre le geste, et arrête le mouvement en cas de douleur articulaire.</p></div>';
+  el.scrollTop = 0; $('.fiche-in', el).focus();
+}
+function openFiche(name){ if (!FICHES[name]) return; S.fiche = name; renderFiche(); }
+function libList(){
+  const q = slug(S.lib.q); let h = '';
+  for (const g of GROUP_NAMES){
+    if (!q && S.lib.group && g !== S.lib.group) continue;
+    const items = GROUPS[g].filter(n => { if (!q) return true; const f = FICHES[n]; return slug(n+' '+g+' '+f[0]+' '+(f[1]+' '+f[2]).split(' ').filter(Boolean).map(m => MUSCLES[m]).join(' ')).includes(q); });
+    if (items.length) h += '<section class="card lib"><h3>'+esc(g)+' · '+items.length+'</h3>'+items.map(n => '<button data-action="fiche" data-n="'+esc(n)+'"><b>'+esc(n)+'</b><small>'+esc(FICHES[n][0])+'</small></button>').join('')+'</section>';
+  }
+  return h || '<div class="card empty">Aucun exercice ne correspond à cette recherche.</div>';
+}
+function viewLibrary(){
+  return '<div><h2 class="sec-title">Exercices</h2><p class="muted small">'+CATALOG.length+' fiches : matériel, muscles ciblés, exécution et conseils. Touche un nom d’exercice, ici ou ailleurs dans le carnet, pour ouvrir sa fiche.</p></div>'
+    + '<input class="inp" id="lib-q" type="search" placeholder="Rechercher un exercice, un muscle, un appareil" aria-label="Rechercher dans les exercices" value="'+esc(S.lib.q)+'" autocomplete="off">'
+    + '<div class="chips" id="lib-groups">'+[''].concat(GROUP_NAMES).map(g => '<button data-action="lib-group" data-g="'+esc(g)+'" aria-pressed="'+(g === S.lib.group)+'">'+(g ? esc(g) : 'Tous')+'</button>').join('')+'</div>'
+    + '<div id="lib-list" class="stack" style="gap:16px">'+libList()+'</div>';
+}
+
+
 function T(group, name, sets, reps){ const e = BY_ID[slug(group)+'.'+slug(name)]; return {exId:e.id, name:e.name, group:e.group, sets:sets, reps:reps}; }
 function defaultTemplates(){ return [
   {id:'tpl-haut', name:'Pecs\u00A0· Dos\u00A0· Épaules', exercises:[
@@ -318,7 +872,7 @@ const S = {
   loaded:false, slow:false,
   editing:null, dirty:false, saveTimer:null, saveState:'',
   editingTpl:null, tplIsNew:false,
-  picker:null, confirm:null,
+  picker:null, confirm:null, fiche:null, lib:{group:'', q:''},
   prog:{exId:null, metric:'max'},
   localLeft:0, backup:null
 };
@@ -453,7 +1007,7 @@ function startCloud(user){
   ];
   render();
 }
-function softRender(){ paintSync(); if (S.view === 'seance' || S.view === 'modele' || S.picker || S.confirm){ renderBanner(); paintSaveState(); return; } render(); }
+function softRender(){ paintSync(); if (S.view === 'seance' || S.view === 'modele' || S.view === 'exercices' || S.picker || S.confirm || S.fiche){ renderBanner(); paintSaveState(); return; } render(); }
 function paintSync(){
   const el = $('#sync'); if (!el) return;
   if (S.mode !== 'cloud' || !S.loaded){ el.className = 'sync'; el.textContent = ''; return; }
@@ -561,7 +1115,7 @@ function render(){
   document.body.classList.toggle('gate', S.mode === 'setup' || S.mode === 'signin');
   paintSync();
   if (S.mode === 'setup' || S.mode === 'signin'){ app.innerHTML = S.mode === 'setup' ? viewSetup() : viewSignin(); renderBanner(); return; }
-  app.innerHTML = S.view === 'seance' ? viewSession() : S.view === 'modele' ? viewTemplate() : S.view === 'programme' ? viewProgramme() : S.view === 'progression' ? viewProgress() : viewHome();
+  app.innerHTML = S.view === 'seance' ? viewSession() : S.view === 'modele' ? viewTemplate() : S.view === 'programme' ? viewProgramme() : S.view === 'progression' ? viewProgress() : S.view === 'exercices' ? viewLibrary() : viewHome();
   renderBanner();
   if (S.view === 'progression') drawProgressChart();
   if (S.view === 'seance') paintSaveState();
@@ -657,7 +1211,7 @@ function exCard(ex, ei){
       + '<input id="w-'+ei+'-'+si+'" inputmode="decimal" autocomplete="off" data-k="w" data-e="'+ei+'" data-s="'+si+'" value="'+esc(inputVal(t.w))+'" placeholder="'+(lp && lp.w ? esc(inputVal(lp.w)) : '')+'" aria-label="Poids en kg, série '+(si+1)+'">'
       + '<input id="r-'+ei+'-'+si+'" inputmode="numeric" autocomplete="off" data-k="r" data-e="'+ei+'" data-s="'+si+'" value="'+esc(inputVal(t.r))+'" placeholder="'+(lp ? lp.r : '')+'" aria-label="Répétitions, série '+(si+1)+'">'
       + '<button class="x" data-action="set-remove" data-e="'+ei+'" data-s="'+si+'" aria-label="Supprimer la série '+(si+1)+'">×</button></div>'; }).join('');
-  return '<section class="card ex"><header><div><span class="chip">'+esc(ex.group)+'</span><h3>'+esc(ex.name)+'</h3></div>'
+  return '<section class="card ex"><header><div><span class="chip">'+esc(ex.group)+'</span><h3>'+nameLink(ex.exId, ex.name)+'</h3></div>'
     + '<div class="ex-actions"><button class="btn ghost sm" data-action="ex-replace" data-e="'+ei+'">Remplacer</button><button class="btn ghost sm" data-action="ex-remove" data-e="'+ei+'">Retirer</button></div></header>'
     + '<p class="last">'+(ex.target ? 'Objectif : '+esc(ex.target)+' reps. ' : '')+(last ? 'Dernière fois ('+esc(fmtShort(last.date))+') : '+esc(setsText(last.sets)) : 'Première fois sur cet exercice.')+'</p>'
     + '<div class="sets">'+(ex.sets.length ? '<div class="sets-head"><span>N°</span><span>Poids (kg)</span><span>Reps</span><span></span></div>' : '')+rows+'</div>'
@@ -671,7 +1225,7 @@ function viewProgramme(){
     + '<p class="muted small">Un modèle préremplit une nouvelle séance avec ses exercices. Donne-lui un jour et le carnet te le propose ce jour-là. Sans jour, il propose les modèles à tour de rôle.</p>'
     + (t.length ? t.map(x => '<section class="card tpl"><div class="row between"><h3>'+esc(x.name)+'</h3><button class="btn sm" data-action="tpl-edit" data-id="'+esc(x.id)+'">Modifier</button></div>'
         + '<p class="when'+(tplDays(x).length ? '' : ' muted')+'">'+(tplDays(x).length ? esc(daysLabel(x)) : 'Aucun jour assigné')+'</p>'
-        + (x.exercises.length ? '<ol>'+x.exercises.map(e => '<li><b>'+esc(e.name)+'</b> · '+e.sets+' × '+esc(e.reps||'?')+'</li>').join('')+'</ol>' : '<p class="muted small">Aucun exercice.</p>')+'</section>').join('')
+        + (x.exercises.length ? '<ol>'+x.exercises.map(e => '<li><b>'+nameLink(e.exId, e.name)+'</b> · '+e.sets+' × '+esc(e.reps||'?')+'</li>').join('')+'</ol>' : '<p class="muted small">Aucun exercice.</p>')+'</section>').join('')
       : '<div class="card empty">Aucun modèle. Crée ton premier modèle pour démarrer tes séances en un geste.</div>');
 }
 function viewTemplate(){
@@ -681,7 +1235,7 @@ function viewTemplate(){
     + '<div class="fld"><span id="t-days-l">Jour de la séance</span><div class="seg days" role="group" aria-labelledby="t-days-l">'+DAYS_S.map((l, i) => '<button data-action="tpl-day" data-d="'+i+'" aria-pressed="'+tplDays(t).includes(i)+'" aria-label="'+DAYS[i]+'">'+l+'</button>').join('')+'</div>'
     + '<span class="small" style="font-weight:400">'+(tplDays(t).length ? esc(daysLabel(t))+'.' : 'Aucun jour : ce modèle reste disponible à la demande.')+' Tu peux en choisir plusieurs.</span></div></div>'
     + '<section class="card pad">'+(t.exercises.length ? t.exercises.map((e, i) =>
-        '<div class="tex"><div><span class="chip">'+esc(e.group)+'</span><div class="nm">'+esc(e.name)+'</div></div>'
+        '<div class="tex"><div><span class="chip">'+esc(e.group)+'</span><div class="nm">'+nameLink(e.exId, e.name)+'</div></div>'
         + '<div class="row"><button class="btn ghost sm" data-action="tex-up" data-i="'+i+'" aria-label="Monter '+esc(e.name)+'"'+(i ? '' : ' disabled')+'>↑</button><button class="btn ghost sm" data-action="tex-down" data-i="'+i+'" aria-label="Descendre '+esc(e.name)+'"'+(i < t.exercises.length-1 ? '' : ' disabled')+'>↓</button></div>'
         + '<div class="ctl"><span class="stepper"><button data-action="tex-less" data-i="'+i+'" aria-label="Une série de moins">−</button><span>'+plural(e.sets,'série','séries')+'</span><button data-action="tex-more" data-i="'+i+'" aria-label="Une série de plus">+</button></span>'
         + '<label class="small muted" for="t-reps-'+i+'">Reps visées</label><input class="inp reps" id="t-reps-'+i+'" data-tr="'+i+'" value="'+esc(e.reps||'')+'" placeholder="8-10" autocomplete="off">'
@@ -725,6 +1279,7 @@ function viewProgress(){
   const rows = h.slice().reverse().slice(0,15).map(p => '<tr><td>'+esc(fmtShort(p.date))+'</td><td>'+esc(setsText(p.sets))+'</td><td class="r">'+fmtN(p.max)+'</td><td class="r">'+NF0.format(p.vol)+'</td><td class="r">'+fmtN(p.e1rm)+'</td></tr>').join('');
   const ex = '<section class="card pad stack"><h2 class="sec-title">Progression par exercice</h2>'
     + '<label class="fld" for="p-ex">Exercice<select id="p-ex">'+opts+'</select></label>'
+    + (function(){ const cur = list.find(e => e.exId === S.prog.exId), k = cur && ficheKey(cur.exId, cur.name); return k ? '<div><button class="linkname small" data-action="fiche" data-n="'+esc(k)+'">Voir la fiche de cet exercice</button></div>' : ''; })()
     + '<div class="seg" role="group" aria-label="Mesure affichée">'+Object.keys(METRICS).map(k => '<button data-action="metric" data-m="'+k+'" aria-pressed="'+(k === S.prog.metric)+'">'+METRICS[k].l+'</button>').join('')+'</div>'
     + '<p class="small muted" id="chart-title">'+M.l+' par séance'+(M.u ? ', en '+M.u : '')+(S.prog.metric === 'e1rm' ? ' (formule d’Epley)' : '')+'</p>'
     + '<div class="chart" id="chart"></div>'+facts
@@ -850,7 +1405,7 @@ function paintPicker(){
   chips.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.g === p.group)));
   const q = slug(p.q), items = allExercises().filter(e => (q ? true : !p.group || e.group === p.group) && (!q || slug(e.name).includes(q) || slug(e.group).includes(q)));
   let h = '', g = null;
-  for (const e of items.sort((a,b) => GROUP_NAMES.indexOf(a.group)-GROUP_NAMES.indexOf(b.group))){ if (e.group !== g){ g = e.group; h += '<h4>'+esc(g)+'</h4>'; } h += '<button data-action="pick" data-id="'+esc(e.id)+'">'+esc(e.name)+(e.custom ? ' <small>· perso</small>' : '')+'</button>'; }
+  for (const e of items.sort((a,b) => GROUP_NAMES.indexOf(a.group)-GROUP_NAMES.indexOf(b.group))){ if (e.group !== g){ g = e.group; h += '<h4>'+esc(g)+'</h4>'; } h += '<div class="prow"><button data-action="pick" data-id="'+esc(e.id)+'">'+esc(e.name)+(e.custom ? ' <small>· perso</small>' : '')+'</button>'+(FICHES[e.name] && !e.custom ? '<button class="info" data-action="fiche" data-n="'+esc(e.name)+'" aria-label="Fiche de '+esc(e.name)+'">Fiche</button>' : '')+'</div>'; }
   $('#pick-list').innerHTML = h || '<p class="muted small" style="padding:14px 4px">Aucun exercice ne correspond. Tu peux le créer juste en dessous.</p>';
 }
 function pickChoose(e){
@@ -899,6 +1454,9 @@ const ACT = {
   'tex-less': d => { const e = S.editingTpl.exercises[+d.i]; e.sets = Math.max(1, (e.sets||1)-1); render(); },
   'tex-more': d => { const e = S.editingTpl.exercises[+d.i]; e.sets = Math.min(12, (e.sets||1)+1); render(); },
   'metric': d => { S.prog.metric = d.m; render(); },
+  'fiche': d => openFiche(d.n),
+  'fiche-close': () => { S.fiche = null; renderFiche(); },
+  'lib-group': d => { S.lib.group = d.g; S.lib.q = ''; render(); },
   'export-csv': () => { exportCsv(); },
   'backup-save': () => { exportBackup(); },
   'backup-pick': () => { const f = $('#restore-file'); f.value = ''; f.click(); },
@@ -926,6 +1484,7 @@ document.addEventListener('input', ev => {
   else if (t.dataset.tf === 'name' && S.editingTpl){ S.editingTpl.name = t.value; }
   else if (t.dataset.tr != null && S.editingTpl){ S.editingTpl.exercises[+t.dataset.tr].reps = t.value.trim(); }
   else if (t.id === 'pick-q' && S.picker){ S.picker.q = t.value; paintPicker(); }
+  else if (t.id === 'lib-q'){ S.lib.q = t.value; const l = $('#lib-list'); if (l) l.innerHTML = libList(); }
 });
 document.addEventListener('submit', ev => { if (ev.target.id === 'auth-form'){ ev.preventDefault(); authDo('in'); } });
 document.addEventListener('change', ev => {
@@ -935,13 +1494,14 @@ document.addEventListener('change', ev => {
   else if (t.id === 'p-ex'){ S.prog.exId = t.value; render(); }
 });
 document.addEventListener('keydown', ev => {
+  if (ev.key === 'Escape' && S.fiche){ S.fiche = null; renderFiche(); return; }
   if (ev.key === 'Escape' && (S.picker || S.confirm)) closeSheet();
   if (ev.key === 'Enter' && ev.target.dataset && ev.target.dataset.k){ const all = [...document.querySelectorAll('.set input')], i = all.indexOf(ev.target); if (all[i+1]) all[i+1].focus(); else ev.target.blur(); }
   if (ev.key === 'Enter' && ev.target.id === 'new-name') ACT['pick-create']();
 });
-function viewFromHash(){ const h = location.hash.replace('#',''); return h === 'programme' || h === 'progression' ? h : 'seances'; }
+function viewFromHash(){ const h = location.hash.replace('#',''); return h === 'programme' || h === 'progression' || h === 'exercices' ? h : 'seances'; }
 window.addEventListener('online', paintSync); window.addEventListener('offline', paintSync);
-window.addEventListener('hashchange', () => { persistEditing(); S.editing = null; S.editingTpl = null; S.picker = null; S.confirm = null; renderSheet(); S.view = viewFromHash(); render(); window.scrollTo(0,0); });
+window.addEventListener('hashchange', () => { persistEditing(); S.fiche = null; renderFiche(); S.editing = null; S.editingTpl = null; S.picker = null; S.confirm = null; renderSheet(); S.view = viewFromHash(); render(); window.scrollTo(0,0); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) persistEditing(); });
 window.addEventListener('pagehide', persistEditing);
 let rsT = null;
