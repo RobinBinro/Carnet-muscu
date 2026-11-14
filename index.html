@@ -209,8 +209,12 @@ td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;padding-right:0;pad
 .sheet-back{position:absolute;inset:0;background:rgba(8,10,14,.55)}
 .sheet-panel{position:relative;background:var(--surface);border-radius:16px 16px 0 0;width:100%;max-width:640px;max-height:88%;display:flex;flex-direction:column;gap:10px;padding:16px;border:1px solid var(--line)}
 .sheet-panel h2{font-size:26px;text-transform:uppercase}
-.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
-.chips button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;min-height:36px;font-size:14px;font-weight:600;white-space:nowrap;color:var(--muted)}
+.sheet-panel.pick{height:92%;max-height:92%}
+.sheet-panel.pick > .row.between{flex-wrap:nowrap;align-items:flex-start}
+.sheet-panel.pick h2{font-size:22px;min-width:0;overflow-wrap:anywhere}
+.sheet-panel.pick > .row.between .btn{flex-shrink:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 10px;min-height:34px;font-size:13px;font-weight:600;white-space:nowrap;color:var(--muted)}
 .chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .plist{overflow-y:auto;flex:1;min-height:120px;display:flex;flex-direction:column;border-top:1px solid var(--line)}
 .plist h4{margin:10px 0 2px;font-family:var(--font-display);font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -830,7 +834,7 @@ function renderSheet(){
   }
   const p = S.picker; if (!p){ el.hidden = true; el.innerHTML = ''; return; }
   el.hidden = false;
-  el.innerHTML = '<div class="sheet-back" data-action="sheet-close"></div><div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="pk-t" tabindex="-1">'
+  el.innerHTML = '<div class="sheet-back" data-action="sheet-close"></div><div class="sheet-panel pick" role="dialog" aria-modal="true" aria-labelledby="pk-t" tabindex="-1">'
     + '<div class="row between"><h2 id="pk-t">'+esc(p.title)+'</h2><button class="btn ghost sm" data-action="sheet-close">Fermer</button></div>'
     + '<input class="inp" id="pick-q" type="search" placeholder="Rechercher un exercice" aria-label="Rechercher un exercice" autocomplete="off">'
     + '<div class="chips" id="pick-groups"></div><div class="plist" id="pick-list"></div>'
@@ -841,12 +845,13 @@ function renderSheet(){
 }
 function paintPicker(){
   const p = S.picker; if (!p) return;
-  $('#pick-groups').innerHTML = [''].concat(GROUP_NAMES).map(g => '<button data-action="pick-group" data-g="'+esc(g)+'" aria-pressed="'+(g === p.group)+'">'+(g ? esc(g) : 'Tous')+'</button>').join('');
+  const chips = $('#pick-groups');
+  if (!chips.firstChild) chips.innerHTML = [''].concat(GROUP_NAMES).map(g => '<button data-action="pick-group" data-g="'+esc(g)+'">'+(g ? esc(g) : 'Tous')+'</button>').join('');
+  chips.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.g === p.group)));
   const q = slug(p.q), items = allExercises().filter(e => (q ? true : !p.group || e.group === p.group) && (!q || slug(e.name).includes(q) || slug(e.group).includes(q)));
   let h = '', g = null;
   for (const e of items.sort((a,b) => GROUP_NAMES.indexOf(a.group)-GROUP_NAMES.indexOf(b.group))){ if (e.group !== g){ g = e.group; h += '<h4>'+esc(g)+'</h4>'; } h += '<button data-action="pick" data-id="'+esc(e.id)+'">'+esc(e.name)+(e.custom ? ' <small>· perso</small>' : '')+'</button>'; }
   $('#pick-list').innerHTML = h || '<p class="muted small" style="padding:14px 4px">Aucun exercice ne correspond. Tu peux le créer juste en dessous.</p>';
-  const act = $('#pick-groups [aria-pressed="true"]'); if (act && act.scrollIntoView) act.scrollIntoView({block:'nearest', inline:'center'});
 }
 function pickChoose(e){
   const p = S.picker; if (!p || !e) return;
@@ -905,7 +910,7 @@ const ACT = {
   'demo-exit': () => exitDemo(),
   'sheet-close': () => closeSheet(),
   'confirm-yes': () => { const fn = S.confirm && S.confirm.fn; S.confirm = null; renderSheet(); if (fn) fn(); },
-  'pick-group': d => { S.picker.group = d.g; S.picker.q = ''; const q = $('#pick-q'); if (q) q.value = ''; paintPicker(); },
+  'pick-group': d => { S.picker.group = d.g; S.picker.q = ''; const q = $('#pick-q'); if (q) q.value = ''; paintPicker(); const l = $('#pick-list'); if (l) l.scrollTop = 0; },
   'pick': d => pickChoose(exById(d.id)),
   'pick-create': () => { const name = ($('#new-name').value||'').trim(), group = $('#new-group').value; if (!name){ toast('Donne un nom à l’exercice.'); $('#new-name').focus(); return; }
     const e = {id:'perso.'+uid(), name:name.slice(0,80), group:group, custom:true}; S.config.custom = (S.config.custom||[]).concat([e]); storeSaveConfig(); pickChoose(e); }
